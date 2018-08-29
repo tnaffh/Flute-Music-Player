@@ -130,9 +130,13 @@ class Song {
   int duration;
   String uri;
   String albumArt;
+  int isFav=0;
+  int timestamp=0;
+  int count=0;
 
   Song(this.id, this.artist, this.title, this.album, this.albumId,
-      this.duration, this.uri, this.albumArt);
+      this.duration, this.uri, this.albumArt,{this.isFav=0,this.timestamp=0,this.count=0});
+
   Song.fromMap(Map m) {
     id = m["id"];
     artist = m["artist"];
@@ -142,5 +146,26 @@ class Song {
     duration = m["duration"];
     uri = m["uri"];
     albumArt = m["albumArt"];
+    isFav=m["isFav"];
+    timestamp=m["timestamp"];
+    count=m["count"];
+  }
+  static final Columns=["id","artist", "title", "album", "albumId", "duration", "uri", "albumArt","isFav","timestamp"];
+
+  Map toMap(){
+    Map<String,dynamic> map={
+      "id":id,
+      "artist":artist,
+      "title":title,
+      "album":album,
+      "albumId":albumId,
+      "duration":duration,
+      "uri":uri,
+      "albumArt":albumArt,
+      "isFav":isFav,
+      "timestamp":timestamp,
+      "count":count,
+    };
+    return map;
   }
 }
